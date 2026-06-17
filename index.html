@@ -173,64 +173,7 @@
     <p>Paste this into Gemini Canvas and it will build an app that asks for your own key instead of using the hidden one:</p>
     <div class="promptbox">Build a single-file HTML app for a do-now generator. It must call the Gemini REST API directly with fetch(). Do NOT use a hidden or built-in key. Instead add a visible text box where the user pastes their own Gemini API key, and use that value in the x-goog-api-key header. Use model gemini-flash-latest at https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent and read the reply from candidates[0].content.parts[0].text. Keep it one self-contained file with inline CSS, no build step, no external libraries.</div>
 
-    <h3>5. Or just use this finished example</h3>
-    <p>Copy this into a file named <code>index.html</code> (same Mac/PC steps as above), paste your free key where it says <code>PASTE-YOUR-KEY-HERE</code>, and drag it onto Netlify. It generates a fresh do-now on every click.</p>
-    <pre class="code">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-&lt;meta charset="UTF-8"&gt;
-&lt;title&gt;Do-Now Generator&lt;/title&gt;
-&lt;style&gt;
-  body{font-family:system-ui,sans-serif;max-width:640px;margin:40px auto;padding:0 16px;color:#1e293b}
-  input,button{font:inherit;width:100%;padding:10px;margin:6px 0;border:1px solid #cbd5e1;border-radius:8px;box-sizing:border-box}
-  button{background:#4f46e5;color:#fff;border:none;cursor:pointer;font-weight:600}
-  #out{white-space:pre-wrap;background:#f8fafc;border-radius:8px;padding:16px;margin-top:12px;min-height:40px}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h1&gt;Do-Now Generator&lt;/h1&gt;
-
-  &lt;!-- PASTE YOUR FREE GEMINI KEY BETWEEN THE QUOTES BELOW.
-       Get it free at aistudio.google.com (no credit card).
-       This key is visible to anyone viewing the page.
-       Use a free-tier key only, and delete it after the assignment. --&gt;
-  &lt;label&gt;Your Gemini API key&lt;/label&gt;
-  &lt;input id="key" type="text" value="PASTE-YOUR-KEY-HERE" /&gt;
-
-  &lt;label&gt;Topic / grade level&lt;/label&gt;
-  &lt;input id="topic" type="text" value="8th grade science, photosynthesis" /&gt;
-
-  &lt;button onclick="generate()"&gt;Generate a fresh Do-Now&lt;/button&gt;
-  &lt;div id="out"&gt;&lt;/div&gt;
-
-&lt;script&gt;
-async function generate(){
-  const key = document.getElementById('key').value.trim();
-  const topic = document.getElementById('topic').value.trim();
-  const out = document.getElementById('out');
-  if(key === 'PASTE-YOUR-KEY-HERE' || !key){ out.textContent = 'Paste your API key first.'; return; }
-  out.textContent = 'Thinking...';
-
-  const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent';
-  const prompt = `Write one short, engaging Do-Now warm-up question for: ${topic}. One question only, no answer.`;
-
-  try{
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
-      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-    });
-    const data = await res.json();
-    if(data.error){ out.textContent = 'Error: ' + data.error.message; return; }
-    out.textContent = data.candidates[0].content.parts[0].text;
-  }catch(e){
-    out.textContent = 'Request blocked (likely CORS). Run this file locally or host it on Netlify instead of CodePen.';
-  }
-}
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</pre>
-    <p class="muted">If you get an error mentioning &ldquo;CORS,&rdquo; you're on a site that blocks the call. Open the file locally or host it on Netlify and it will work.</p>
+    <p class="muted" style="margin-top:18px">From here it's the same as the main guide: save Gemini's single HTML file, drag it onto Netlify, and share the link. If you ever see an error mentioning &ldquo;CORS,&rdquo; you're on a site that blocks the call, so open the file locally or host it on Netlify and it will work.</p>
   </div>
 
   <p class="footer">Made for our class &middot; Speed, not polish &middot; The distance between "I wish" and "I have one" is short now.</p>
