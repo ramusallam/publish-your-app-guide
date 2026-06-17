@@ -142,11 +142,13 @@
   <hr>
 
   <div class="safety">
-    <span class="pill">Optional &mdash; add a REAL live AI feature</span>
-    <p style="margin-top:8px">Everything above gets you a working app. But what if you want your app to actually <em>think</em> live, generating a fresh do-now every click, or writing real feedback on a student answer? That needs a real AI connection. It's free and doable. Here's the honest, complete walkthrough.</p>
+    <span class="pill">Optional &mdash; build an app that calls AI live</span>
+    <p style="margin-top:8px">Everything above gets you a working app, but the apps above don't actually "think." This section is for when you want one that does: an app that calls an AI <em>while it runs</em>, generating brand-new content on the spot.</p>
+    <p><strong>The worked example below is a "Do-Now Generator."</strong> You type a topic ("8th grade photosynthesis"), click a button, and it asks an AI to write a fresh do-now question every time. The same recipe works for anything that has to think live: an exit ticket that gives real feedback, a vocabulary-sentence maker, a random word-problem writer. We'll walk through building that Do-Now Generator from start to shareable link.</p>
+    <p class="muted">If your app is just a timer, randomizer, matcher, or game, you do <strong>not</strong> need any of this. Those don't call AI, so the main guide above is all you need.</p>
 
-    <h3>Why your AI feature worked in Gemini but died after export</h3>
-    <p>Inside Gemini, Google quietly runs the AI for you behind a curtain, using a secret key you never see. The moment you copy the file out, the curtain is gone. Your app still tries to call the AI, but the password slot is empty, so the button just does nothing. To make it work on your own, you give it your own key.</p>
+    <h3>First, why these apps break when you export them</h3>
+    <p>Inside Gemini, Google quietly runs the AI for you behind a curtain, using a secret key you never see. The moment you copy the file out, the curtain is gone. Your app still tries to call the AI, but the password slot is empty, so the button just does nothing. To make it work on your own, you give it your own key. Here's how.</p>
 
     <h3>1. Get a free Google AI key (no credit card)</h3>
     <ol>
