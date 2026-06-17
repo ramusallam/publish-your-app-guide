@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publish Your App — Student Guide</title>
+<style>
+  :root{
+    --cream:#faf7f0; --ink:#1f2430; --soft:#5b6472;
+    --indigo:#4f46e5; --indigo-soft:#eef0ff; --line:#e7e2d6;
+    --teal:#0d9488; --amber:#b45309; --amber-soft:#fff7ed;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    color:var(--ink); background:var(--cream); margin:0;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:56px 28px 80px}
+  header{margin-bottom:8px}
+  .eyebrow{color:var(--indigo); font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.72rem; margin:0 0 8px}
+  h1{font-size:2.1rem; line-height:1.15; margin:0 0 10px; letter-spacing:-.02em}
+  .lede{color:var(--soft); font-size:1.06rem; margin:0 0 8px}
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:16px;
+    padding:24px 26px; margin:22px 0; box-shadow:0 1px 2px rgba(31,36,48,.04);
+  }
+  h2{font-size:1.2rem; margin:0 0 6px; letter-spacing:-.01em; display:flex; align-items:center; gap:10px}
+  .num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:30px; height:30px; border-radius:50%; background:var(--indigo);
+    color:#fff; font-size:.95rem; font-weight:700; flex:0 0 auto;
+  }
+  h3{font-size:1rem; margin:18px 0 6px; color:var(--ink)}
+  p{margin:8px 0}
+  ol,ul{margin:8px 0 8px 4px; padding-left:22px}
+  li{margin:6px 0}
+  code,.kbd{
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.92em;
+    background:var(--indigo-soft); color:#3730a3; padding:2px 7px; border-radius:6px;
+  }
+  a{color:var(--indigo); font-weight:600}
+  .pill{display:inline-block; background:var(--indigo-soft); color:#3730a3; font-weight:700; font-size:.74rem; letter-spacing:.04em; text-transform:uppercase; padding:4px 10px; border-radius:999px; margin-bottom:6px}
+  .platform{border-left:3px solid var(--teal); padding-left:16px; margin:14px 0}
+  .platform .pill{background:#d7f2ee; color:#0f766e}
+  .video{
+    display:flex; gap:14px; align-items:center; background:var(--indigo-soft);
+    border:1px solid #d9dbff; border-radius:12px; padding:16px 18px; margin:14px 0;
+  }
+  .video .play{font-size:1.6rem}
+  .note{
+    background:var(--amber-soft); border:1px solid #f3d9b6; border-radius:12px;
+    padding:16px 18px; margin:16px 0;
+  }
+  .note .pill{background:#fde3c2; color:var(--amber)}
+  .safety{background:#f0fdf9; border:1px solid #b9e8df; border-radius:12px; padding:16px 18px}
+  .safety .pill{background:#cdeee8; color:#0f766e}
+  .muted{color:var(--soft); font-size:.92rem}
+  hr{border:none; border-top:1px solid var(--line); margin:28px 0}
+  .footer{color:var(--soft); font-size:.85rem; text-align:center; margin-top:36px}
+  @media print{
+    body{background:#fff}
+    .card,.video,.note,.safety{box-shadow:none; break-inside:avoid}
+    .wrap{padding:20px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Quick Guide</p>
+    <h1>Get Your App a Shareable Link</h1>
+    <p class="lede">You built something in Gemini. Now let's get it a real web link you can drop in the discussion board. About two minutes, totally free, no coding. Follow your computer's path below.</p>
+  </header>
+
+  <div class="card">
+    <h2><span class="num">1</span> Get the single file out of Gemini</h2>
+    <p>In your Gemini chat, type this exactly:</p>
+    <p><code>Combine this whole app into one single HTML file with all the CSS and JavaScript inside it.</code></p>
+    <p>When the code appears, click the <strong>copy</strong> icon at the top of the code block. That copies everything at once. Now make it into a file using <em>your</em> computer's steps below.</p>
+
+    <div class="platform">
+      <span class="pill">On a Mac</span>
+      <ol>
+        <li>Open <strong>TextEdit</strong> (find it in Applications, or search with Spotlight: press <span class="kbd">Cmd</span> + <span class="kbd">Space</span> and type "TextEdit").</li>
+        <li>Make a new blank document. Then, in the top menu, click <strong>Format &rarr; Make Plain Text</strong>. <em>(This is the step everyone forgets. Do not skip it, or your file won't work.)</em></li>
+        <li>Paste your copied code (<span class="kbd">Cmd</span> + <span class="kbd">V</span>).</li>
+        <li>Click <strong>File &rarr; Save</strong>. In the name box, type exactly <code>index.html</code></li>
+        <li>If it asks about the extension, click <strong>"Use .html"</strong>. Save it to your Desktop so it's easy to find.</li>
+      </ol>
+    </div>
+
+    <div class="platform">
+      <span class="pill">On a Windows PC</span>
+      <ol>
+        <li>Open <strong>Notepad</strong> (click Start and type "Notepad").</li>
+        <li>Paste your copied code (<span class="kbd">Ctrl</span> + <span class="kbd">V</span>).</li>
+        <li>Click <strong>File &rarr; Save As</strong>.</li>
+        <li>Where it says <strong>"Save as type,"</strong> change it from "Text Documents" to <strong>"All Files."</strong> <em>(This is the step everyone forgets. If you skip it, Windows secretly adds <code>.txt</code> and the file won't work.)</em></li>
+        <li>In the file name box, type exactly <code>index.html</code> and click <strong>Save</strong>. Save it to your Desktop so it's easy to find.</li>
+      </ol>
+    </div>
+    <p class="muted">The file name matters: it must be <code>index.html</code>, all lowercase, with no extra words.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">2</span> Drag it onto Netlify</h2>
+    <p>You do <strong>not</strong> need a folder or a zip. Just the one file.</p>
+    <ol>
+      <li>Go to <a href="https://app.netlify.com/drop">app.netlify.com/drop</a> in your browser.</li>
+      <li><strong>Drag your <code>index.html</code> file</strong> from your Desktop straight onto that web page.</li>
+      <li>Wait a few seconds. A live link appears at the top, something like <code>https://gentle-otter-12345.netlify.app</code>.</li>
+      <li>Click <strong>"Claim site"</strong> at the top and sign in with your Google account. Free, about 20 seconds. <em>This is what keeps your link alive permanently.</em> Skip it and the link disappears in about an hour.</li>
+      <li>Click your link to open it in a new tab and make sure it actually works.</li>
+      <li>Paste that link into the discussion board. Done.</li>
+    </ol>
+    <div class="video">
+      <span class="play">▶</span>
+      <div>
+        <strong>Watch it (current, under 5 min):</strong><br>
+        <a href="https://www.youtube.com/watch?v=quntcN35apE">How To Deploy an HTML Site to Netlify (2026)</a>
+        <div class="muted">Shows the exact drag-and-drop step. Your file-creation steps above are the Mac/PC part the video doesn't cover.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <span class="pill">If something goes sideways</span>
+    <p style="margin-top:8px"><strong>You lose zero points.</strong> Some apps just won't survive the trip out of Gemini, and that's information, not failure. If your link won't work after a real try, post a <strong>short screen recording</strong> or a <strong>screenshot plus one sentence</strong> about what your app does. That fully counts.</p>
+    <h3 style="margin-bottom:2px">Quick fixes for the usual snags</h3>
+    <ul style="margin-top:4px">
+      <li><strong>Netlify says "Page not found":</strong> your file probably isn't named exactly <code>index.html</code>. On a PC, this usually means it saved as <code>index.html.txt</code>. Redo the save and set "Save as type" to "All Files."</li>
+      <li><strong>The page is blank or broken:</strong> tell Gemini <em>"put ALL the CSS and JavaScript inside this one HTML file, nothing external,"</em> then recopy, resave, and drag it again.</li>
+      <li><strong>Your link vanished overnight:</strong> you skipped "Claim site." Drag the file again and claim it this time.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="safety">
+    <span class="pill">Optional &mdash; for the curious</span>
+    <p style="margin-top:8px">Want your app to actually call AI <em>live</em> (real generated questions, real responses)? It's free and doable, but a few things have to line up: a free Google AI Studio key, a "paste your own key" setup, and running it locally or on Netlify rather than on a sandbox site. Mention it in your post and your instructor will share a short walkthrough.</p>
+  </div>
+
+  <p class="footer">Made for our class &middot; Speed, not polish &middot; The distance between "I wish" and "I have one" is short now.</p>
+</div>
+</body>
+</html>
