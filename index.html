@@ -53,8 +53,12 @@
     padding:16px 18px; margin:16px 0;
   }
   .note .pill{background:#fde3c2; color:var(--amber)}
-  .safety{background:#f0fdf9; border:1px solid #b9e8df; border-radius:12px; padding:16px 18px}
+  .safety{background:#f0fdf9; border:1px solid #b9e8df; border-radius:12px; padding:20px 22px}
   .safety .pill{background:#cdeee8; color:#0f766e}
+  .safety h3{color:#0f766e; margin-top:20px}
+  .safety ol,.safety ul{margin-top:4px}
+  pre.code{background:#0f1729; color:#e2e8f0; border-radius:10px; padding:16px 18px; overflow-x:auto; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.8rem; line-height:1.5; margin:12px 0; white-space:pre}
+  .promptbox{background:#fff; border:1px solid #b9e8df; border-radius:10px; padding:14px 16px; margin:10px 0; font-style:italic; color:#334155}
   .muted{color:var(--soft); font-size:.92rem}
   hr{border:none; border-top:1px solid var(--line); margin:28px 0}
   .footer{color:var(--soft); font-size:.85rem; text-align:center; margin-top:36px}
@@ -138,8 +142,95 @@
   <hr>
 
   <div class="safety">
-    <span class="pill">Optional &mdash; for the curious</span>
-    <p style="margin-top:8px">Want your app to actually call AI <em>live</em> (real generated questions, real responses)? It's free and doable, but a few things have to line up: a free Google AI Studio key, a "paste your own key" setup, and running it locally or on Netlify rather than on a sandbox site. Mention it in your post and your instructor will share a short walkthrough.</p>
+    <span class="pill">Optional &mdash; add a REAL live AI feature</span>
+    <p style="margin-top:8px">Everything above gets you a working app. But what if you want your app to actually <em>think</em> live, generating a fresh do-now every click, or writing real feedback on a student answer? That needs a real AI connection. It's free and doable. Here's the honest, complete walkthrough.</p>
+
+    <h3>Why your AI feature worked in Gemini but died after export</h3>
+    <p>Inside Gemini, Google quietly runs the AI for you behind a curtain, using a secret key you never see. The moment you copy the file out, the curtain is gone. Your app still tries to call the AI, but the password slot is empty, so the button just does nothing. To make it work on your own, you give it your own key.</p>
+
+    <h3>1. Get a free Google AI key (no credit card)</h3>
+    <ol>
+      <li>Go to <a href="https://aistudio.google.com">aistudio.google.com</a> and sign in with any Google account.</li>
+      <li>Click <strong>Get API key &rarr; Create API key</strong>. Copy it.</li>
+      <li>That's it. It's the free tier, no billing. Plenty for a classroom demo.</li>
+    </ol>
+
+    <h3>2. The safety part, in plain language</h3>
+    <p>A key pasted into a public web page is <strong>visible to anyone</strong> who looks. That's fine for a class assignment as long as you:</p>
+    <ul>
+      <li>use <strong>only a free-tier key</strong> (worst case is hitting a free rate limit, it cannot cost you money);</li>
+      <li><strong>never</strong> paste a key that has billing turned on;</li>
+      <li><strong>delete the key</strong> in AI Studio once the assignment is graded (Get API key &rarr; trash icon).</li>
+    </ul>
+
+    <h3>3. Where it will and won't run</h3>
+    <ul>
+      <li><strong>Works best:</strong> open the file <strong>locally</strong> (double-click it) or host it on <strong>Netlify</strong> using the steps above.</li>
+      <li><strong>Often blocked:</strong> CodePen and similar sandbox sites tend to block the AI call. Use Netlify or local instead.</li>
+    </ul>
+
+    <h3>4. Easiest path: let Gemini build the key-ready version</h3>
+    <p>Paste this into Gemini Canvas and it will build an app that asks for your own key instead of using the hidden one:</p>
+    <div class="promptbox">Build a single-file HTML app for a do-now generator. It must call the Gemini REST API directly with fetch(). Do NOT use a hidden or built-in key. Instead add a visible text box where the user pastes their own Gemini API key, and use that value in the x-goog-api-key header. Use model gemini-flash-latest at https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent and read the reply from candidates[0].content.parts[0].text. Keep it one self-contained file with inline CSS, no build step, no external libraries.</div>
+
+    <h3>5. Or just use this finished example</h3>
+    <p>Copy this into a file named <code>index.html</code> (same Mac/PC steps as above), paste your free key where it says <code>PASTE-YOUR-KEY-HERE</code>, and drag it onto Netlify. It generates a fresh do-now on every click.</p>
+    <pre class="code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;Do-Now Generator&lt;/title&gt;
+&lt;style&gt;
+  body{font-family:system-ui,sans-serif;max-width:640px;margin:40px auto;padding:0 16px;color:#1e293b}
+  input,button{font:inherit;width:100%;padding:10px;margin:6px 0;border:1px solid #cbd5e1;border-radius:8px;box-sizing:border-box}
+  button{background:#4f46e5;color:#fff;border:none;cursor:pointer;font-weight:600}
+  #out{white-space:pre-wrap;background:#f8fafc;border-radius:8px;padding:16px;margin-top:12px;min-height:40px}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Do-Now Generator&lt;/h1&gt;
+
+  &lt;!-- PASTE YOUR FREE GEMINI KEY BETWEEN THE QUOTES BELOW.
+       Get it free at aistudio.google.com (no credit card).
+       This key is visible to anyone viewing the page.
+       Use a free-tier key only, and delete it after the assignment. --&gt;
+  &lt;label&gt;Your Gemini API key&lt;/label&gt;
+  &lt;input id="key" type="text" value="PASTE-YOUR-KEY-HERE" /&gt;
+
+  &lt;label&gt;Topic / grade level&lt;/label&gt;
+  &lt;input id="topic" type="text" value="8th grade science, photosynthesis" /&gt;
+
+  &lt;button onclick="generate()"&gt;Generate a fresh Do-Now&lt;/button&gt;
+  &lt;div id="out"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+async function generate(){
+  const key = document.getElementById('key').value.trim();
+  const topic = document.getElementById('topic').value.trim();
+  const out = document.getElementById('out');
+  if(key === 'PASTE-YOUR-KEY-HERE' || !key){ out.textContent = 'Paste your API key first.'; return; }
+  out.textContent = 'Thinking...';
+
+  const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent';
+  const prompt = `Write one short, engaging Do-Now warm-up question for: ${topic}. One question only, no answer.`;
+
+  try{
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+    });
+    const data = await res.json();
+    if(data.error){ out.textContent = 'Error: ' + data.error.message; return; }
+    out.textContent = data.candidates[0].content.parts[0].text;
+  }catch(e){
+    out.textContent = 'Request blocked (likely CORS). Run this file locally or host it on Netlify instead of CodePen.';
+  }
+}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    <p class="muted">If you get an error mentioning &ldquo;CORS,&rdquo; you're on a site that blocks the call. Open the file locally or host it on Netlify and it will work.</p>
   </div>
 
   <p class="footer">Made for our class &middot; Speed, not polish &middot; The distance between "I wish" and "I have one" is short now.</p>
