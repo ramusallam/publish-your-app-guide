@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Publish Your App — Student Guide</title>
+<title>Publish Your App</title>
 <style>
   :root{
     --cream:#faf7f0; --ink:#1f2430; --soft:#5b6472;
@@ -62,7 +62,26 @@
   .muted{color:var(--soft); font-size:.92rem}
   hr{border:none; border-top:1px solid var(--line); margin:28px 0}
   .footer{color:var(--soft); font-size:.85rem; text-align:center; margin-top:36px}
+  .path{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:16px 0 0}
+  .path span{background:#fff; border:1px solid var(--line); border-radius:999px; padding:4px 12px; font-size:.82rem; font-weight:600; color:#3730a3}
+  .path i{width:14px; height:2px; background:#c7c9f5; border-radius:2px}
+  .card.key{border:1.5px solid var(--indigo); box-shadow:0 4px 18px rgba(79,70,229,.10)}
+  .copyrow{display:flex; gap:10px; align-items:flex-start; margin:8px 0}
+  .copyrow code{flex:1; display:block; padding:10px 12px; line-height:1.5}
+  textarea{width:100%; min-height:130px; border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.82rem; background:#fdfcf8; color:var(--ink); resize:vertical; margin:8px 0}
+  textarea:focus{outline:2px solid var(--indigo); outline-offset:1px}
+  .row{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+  .btn{font:inherit; font-weight:700; font-size:.92rem; background:var(--indigo); color:#fff; border:none; border-radius:10px; padding:10px 18px; cursor:pointer}
+  .btn:hover{background:#4338ca}
+  .btn:disabled{opacity:.45; cursor:not-allowed}
+  .btn.ghost{background:#fff; color:var(--indigo); border:1px solid #c7c9f5; padding:8px 14px; white-space:nowrap}
+  .btn.ghost:hover{background:var(--indigo-soft)}
+  details{margin-top:14px; border-top:1px solid var(--line); padding-top:10px}
+  summary{cursor:pointer; font-weight:600; color:var(--soft)}
+  .icon{width:28px; height:28px; flex:0 0 auto; fill:none; stroke:var(--indigo); stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+  @media (max-width:560px){ .wrap{padding:36px 16px 60px} h1{font-size:1.7rem} .card{padding:20px 18px} .copyrow{flex-direction:column} }
   @media print{
+    .btn,textarea{display:none}
     body{background:#fff}
     .card,.video,.note,.safety{box-shadow:none; break-inside:avoid}
     .wrap{padding:20px}
@@ -72,77 +91,123 @@
 <body>
 <div class="wrap">
   <header>
-    <p class="eyebrow">Quick Guide</p>
-    <h1>Get Your App a Shareable Link</h1>
-    <p class="lede">You built something in Gemini. Now let's get it a real web link you can drop in the discussion board. About two minutes, totally free, no coding. Follow your computer's path below.</p>
+    <p class="eyebrow">Quick Guide &middot; Updated September 2026</p>
+    <h1>Get Your App a Public Link</h1>
+    <p class="lede">You built something in Gemini. Now give it a real web link that anyone can open, anytime, on any device, with no login. About five minutes, free, no coding.</p>
+    <div class="path">
+      <span>Gemini</span><i></i><span>index.html</span><i></i><span>Netlify</span><i></i><span>Public</span><i></i><span>Share</span>
+    </div>
   </header>
 
   <div class="card">
-    <h2><span class="num">1</span> Get the single file out of Gemini</h2>
-    <p>In your Gemini chat, type this exactly:</p>
-    <p><code>Combine this whole app into one single HTML file with all the CSS and JavaScript inside it.</code></p>
-    <p>When the code appears, click the <strong>copy</strong> icon at the top of the code block. That copies everything at once. Now make it into a file using <em>your</em> computer's steps below.</p>
-
-    <div class="platform">
-      <span class="pill">On a Mac</span>
-      <ol>
-        <li>Open <strong>TextEdit</strong> (find it in Applications, or search with Spotlight: press <span class="kbd">Cmd</span> + <span class="kbd">Space</span> and type "TextEdit").</li>
-        <li>Make a new blank document. Then, in the top menu, click <strong>Format &rarr; Make Plain Text</strong>. <em>(This is the step everyone forgets. Do not skip it, or your file won't work.)</em></li>
-        <li>Paste your copied code (<span class="kbd">Cmd</span> + <span class="kbd">V</span>).</li>
-        <li>Click <strong>File &rarr; Save</strong>. In the name box, type exactly <code>index.html</code></li>
-        <li>If it asks about the extension, click <strong>"Use .html"</strong>. Save it to your Desktop so it's easy to find.</li>
-      </ol>
-    </div>
-
-    <div class="platform">
-      <span class="pill">On a Windows PC</span>
-      <ol>
-        <li>Open <strong>Notepad</strong> (click Start and type "Notepad").</li>
-        <li>Paste your copied code (<span class="kbd">Ctrl</span> + <span class="kbd">V</span>).</li>
-        <li>Click <strong>File &rarr; Save As</strong>.</li>
-        <li>Where it says <strong>"Save as type,"</strong> change it from "Text Documents" to <strong>"All Files."</strong> <em>(This is the step everyone forgets. If you skip it, Windows secretly adds <code>.txt</code> and the file won't work.)</em></li>
-        <li>In the file name box, type exactly <code>index.html</code> and click <strong>Save</strong>. Save it to your Desktop so it's easy to find.</li>
-      </ol>
-    </div>
-    <p class="muted">The file name matters: it must be <code>index.html</code>, all lowercase, with no extra words.</p>
+    <h2><span class="num">1</span> Make your free Netlify account</h2>
+    <p class="muted">One time only. Do it first, so your sites are saved to your account and never disappear.</p>
+    <ol>
+      <li>Go to <a href="https://app.netlify.com/signup" target="_blank" rel="noopener">app.netlify.com/signup</a>.</li>
+      <li>Click <strong>Sign up with Google</strong>. Free, no credit card.</li>
+      <li>If it asks setup questions, pick anything and keep going. For a team name, use your first and last name.</li>
+      <li>Leave this tab open. You'll come back to it in Step 4.</li>
+    </ol>
   </div>
 
   <div class="card">
-    <h2><span class="num">2</span> Drag it onto Netlify</h2>
-    <p>You do <strong>not</strong> need a folder or a zip. Just the one file.</p>
+    <h2><span class="num">2</span> Copy your app's code from Gemini</h2>
+    <p>In your Gemini chat, paste this:</p>
+    <div class="copyrow">
+      <code id="exportPrompt">Combine this whole app into one single HTML file with all the CSS and JavaScript inside it.</code>
+      <button class="btn ghost" data-copy="exportPrompt" type="button">Copy</button>
+    </div>
+    <p>When the code appears, click the <strong>copy icon</strong> on the code. In Canvas, switch to the <strong>Code</strong> view first so you copy all of it, not just the preview.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">3</span> Turn it into a file</h2>
+    <p>Paste your code in the box, then click the button. You'll get a file named <code>index.html</code> in your <strong>Downloads</strong> folder, ready to go.</p>
+    <textarea id="codeBox" spellcheck="false" placeholder="Paste your Gemini code here (Cmd + V on a Mac, Ctrl + V on a PC)"></textarea>
+    <div class="row">
+      <button class="btn" id="makeFile" type="button">Download index.html</button>
+      <span class="muted" id="fileStatus" aria-live="polite"></span>
+    </div>
+    <p class="muted">Your code stays on your computer. Nothing is uploaded from this page.</p>
+    <p class="muted">If your computer names it <code>index (1).html</code>, rename it to exactly <code>index.html</code>.</p>
+
+    <details>
+      <summary>Prefer to make the file by hand?</summary>
+      <div class="platform">
+        <span class="pill">On a Mac</span>
+        <ol>
+          <li>Open <strong>TextEdit</strong> (<span class="kbd">Cmd</span> + <span class="kbd">Space</span>, type "TextEdit").</li>
+          <li>New document, then <strong>Format &rarr; Make Plain Text</strong>. Don't skip this one.</li>
+          <li>Paste your code, then <strong>File &rarr; Save</strong> as exactly <code>index.html</code>. If asked, click <strong>Use .html</strong>.</li>
+        </ol>
+      </div>
+      <div class="platform">
+        <span class="pill">On a Windows PC</span>
+        <ol>
+          <li>Open <strong>Notepad</strong> and paste your code.</li>
+          <li><strong>File &rarr; Save As</strong>. Set <strong>Save as type</strong> to <strong>All Files</strong>. Don't skip this one, or Windows adds <code>.txt</code>.</li>
+          <li>Name it exactly <code>index.html</code> and click <strong>Save</strong>.</li>
+        </ol>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">4</span> Drag it onto Netlify</h2>
     <ol>
-      <li>Go to <a href="https://app.netlify.com/drop">app.netlify.com/drop</a> in your browser.</li>
-      <li><strong>Drag your <code>index.html</code> file</strong> from your Desktop straight onto that web page.</li>
-      <li>Wait a few seconds. A live link appears at the top, something like <code>https://gentle-otter-12345.netlify.app</code>.</li>
-      <li>Click <strong>"Claim site"</strong> at the top and sign in with your Google account. Free, about 20 seconds. <em>This is what keeps your link alive permanently.</em> Skip it and the link disappears in about an hour.</li>
-      <li>Click your link to open it in a new tab and make sure it actually works.</li>
-      <li>Paste that link into the discussion board. Done.</li>
+      <li>While signed in, go to <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">app.netlify.com/drop</a>.</li>
+      <li>Open your <strong>Downloads</strong> folder and drag <code>index.html</code> onto the page. Just the one file. No folder, no zip.</li>
+      <li>In a few seconds you'll get a link like <code>https://gentle-otter-12345.netlify.app</code>.</li>
     </ol>
     <div class="video">
-      <span class="play">▶</span>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
       <div>
-        <strong>Watch it (current, under 5 min):</strong><br>
-        <a href="https://www.youtube.com/watch?v=quntcN35apE">How To Deploy an HTML Site to Netlify (2026)</a>
-        <div class="muted">Shows the exact drag-and-drop step. Your file-creation steps above are the Mac/PC part the video doesn't cover.</div>
+        <strong>Watch it (under 5 min):</strong><br>
+        <a href="https://www.youtube.com/watch?v=quntcN35apE" target="_blank" rel="noopener">How To Deploy an HTML Site to Netlify</a>
+        <div class="muted">Shows the drag-and-drop step.</div>
       </div>
     </div>
+  </div>
+
+  <div class="card key">
+    <h2><span class="num">5</span> Make it public, then share</h2>
+    <p><strong>Don't skip this.</strong> New Netlify accounts now make sites <strong>private</strong> by default, so nobody else can open your link until you flip this switch.</p>
+    <ol>
+      <li>On your site's page in Netlify, click <strong>Project configuration</strong>.</li>
+      <li>Under <strong>General</strong>, find <strong>Visitor access &rarr; Project visibility</strong>.</li>
+      <li>Choose <strong>Public</strong> and click <strong>Save</strong>.</li>
+      <li>Test it: open your link in a <strong>private or incognito window</strong>. If your app shows up with no login, anyone can see it.</li>
+      <li>Paste the link into the discussion board. Done.</li>
+    </ol>
+    <p class="muted"><strong>Making more than one app?</strong> Set it once for all of them: <strong>Team settings &rarr; General &rarr; Visitor access &rarr; Default project visibility &rarr; Public</strong>.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Later on</h3>
+    <ul>
+      <li><strong>Want a nicer link?</strong> Project configuration &rarr; General &rarr; <strong>Change project name</strong>. Type something like <code>jordan-quiz-app</code> and your link becomes <code>jordan-quiz-app.netlify.app</code>.</li>
+      <li><strong>Changed your app?</strong> Make a new <code>index.html</code>, open your site in Netlify, go to <strong>Deploys</strong>, and drag the file onto the drop area. Same link, new version.</li>
+      <li><strong>Lost your link?</strong> Sign in at <a href="https://app.netlify.com" target="_blank" rel="noopener">app.netlify.com</a>. Every site you've made is there.</li>
+    </ul>
   </div>
 
   <div class="note">
     <span class="pill">If something goes sideways</span>
     <p style="margin-top:8px"><strong>You lose zero points.</strong> Some apps just won't survive the trip out of Gemini, and that's information, not failure. If your link won't work after a real try, post a <strong>short screen recording</strong> or a <strong>screenshot plus one sentence</strong> about what your app does. That fully counts.</p>
-    <h3 style="margin-bottom:2px">Quick fixes for the usual snags</h3>
+    <h3 style="margin-bottom:2px">Quick fixes</h3>
     <ul style="margin-top:4px">
-      <li><strong>Netlify says "Page not found":</strong> your file probably isn't named exactly <code>index.html</code>. On a PC, this usually means it saved as <code>index.html.txt</code>. Redo the save and set "Save as type" to "All Files."</li>
-      <li><strong>The page is blank or broken:</strong> tell Gemini <em>"put ALL the CSS and JavaScript inside this one HTML file, nothing external,"</em> then recopy, resave, and drag it again.</li>
-      <li><strong>Your link vanished overnight:</strong> you skipped "Claim site." Drag the file again and claim it this time.</li>
+      <li><strong>Others see a login or password page:</strong> your site is still private. Do Step 5.</li>
+      <li><strong>"Page not found":</strong> the file isn't named exactly <code>index.html</code>. Rename it and drag it again.</li>
+      <li><strong>Blank or broken page:</strong> tell Gemini <em>"put ALL the CSS and JavaScript inside this one HTML file, nothing external,"</em> then redo Steps 2 to 4.</li>
+      <li><strong>Link asks for a password or vanished:</strong> you dropped the file while signed out. Those drops are locked and expire. Sign in, then drag it again.</li>
     </ul>
+    <p class="muted"><strong>Backup plan in 10 seconds:</strong> Gemini's own <strong>Share</strong> button makes a link to your Canvas. It only opens inside Gemini, so it's not a true website, but it works in a pinch.</p>
   </div>
 
   <hr>
 
   <div class="safety">
-    <span class="pill">Optional &mdash; build an app that calls AI live</span>
+    <span class="pill">Optional - build an app that calls AI live</span>
     <p style="margin-top:8px">Everything above gets you a working app, but the apps above don't actually "think." This section is for when you want one that does: an app that calls an AI <em>while it runs</em>, generating brand-new content on the spot.</p>
     <p><strong>The worked example below is a "Do-Now Generator."</strong> You type a topic ("8th grade photosynthesis"), click a button, and it asks an AI to write a fresh do-now question every time. The same recipe works for anything that has to think live: an exit ticket that gives real feedback, a vocabulary-sentence maker, a random word-problem writer. We'll walk through building that Do-Now Generator from start to shareable link.</p>
     <p class="muted">If your app is just a timer, randomizer, matcher, or game, you do <strong>not</strong> need any of this. Those don't call AI, so the main guide above is all you need.</p>
@@ -167,7 +232,7 @@
 
     <h3>3. Where it will and won't run</h3>
     <ul>
-      <li><strong>Works best:</strong> open the file <strong>locally</strong> (double-click it) or host it on <strong>Netlify</strong> using the steps above.</li>
+      <li><strong>Works best:</strong> open the file <strong>locally</strong> (double-click it) or host it on <strong>Netlify</strong> using the steps above (don't forget Step 5).</li>
       <li><strong>Often blocked:</strong> CodePen and similar sandbox sites tend to block the AI call. Use Netlify or local instead.</li>
     </ul>
 
@@ -175,10 +240,39 @@
     <p>Paste this into Gemini Canvas and it will build an app that asks for your own key instead of using the hidden one:</p>
     <div class="promptbox">Build a single-file HTML app for a do-now generator. It must call the Gemini REST API directly with fetch(). Do NOT use a hidden or built-in key. Instead add a visible text box where the user pastes their own Gemini API key, and use that value in the x-goog-api-key header. Use model gemini-flash-latest at https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent and read the reply from candidates[0].content.parts[0].text. Keep it one self-contained file with inline CSS, no build step, no external libraries.</div>
 
-    <p class="muted" style="margin-top:18px">From here it's the same as the main guide: save Gemini's single HTML file, drag it onto Netlify, and share the link. If you ever see an error mentioning &ldquo;CORS,&rdquo; you're on a site that blocks the call, so open the file locally or host it on Netlify and it will work.</p>
+    <p class="muted" style="margin-top:18px">From here it's the same as the main guide: Steps 2 to 5. If you ever see an error mentioning "CORS," you're on a site that blocks the call, so open the file locally or host it on Netlify and it will work.</p>
   </div>
 
   <p class="footer">Made for our class &middot; Speed, not polish &middot; The distance between "I wish" and "I have one" is short now.</p>
 </div>
+<script>
+(function(){
+  var box=document.getElementById('codeBox'), btn=document.getElementById('makeFile'), st=document.getElementById('fileStatus');
+  function refresh(){ btn.disabled=!box.value.trim(); }
+  box.addEventListener('input',function(){ refresh(); st.textContent=''; });
+  refresh();
+  btn.addEventListener('click',function(){
+    var code=box.value.trim();
+    var fence=code.match(/^```[a-zA-Z]*\n([\s\S]*?)\n?```$/);
+    if(fence) code=fence[1].trim();
+    if(!/<html|<body|<!doctype/i.test(code)){
+      st.textContent="This doesn't look like a full HTML file. Ask Gemini for the single-file version (Step 2), then copy again.";
+      return;
+    }
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([code],{type:'text/html'}));
+    a.download='index.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); },1000);
+    st.textContent='Done. Check your Downloads folder for index.html.';
+  });
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=document.getElementById(b.getAttribute('data-copy')).textContent;
+      navigator.clipboard.writeText(t).then(function(){ b.textContent='Copied'; setTimeout(function(){ b.textContent='Copy'; },1500); }).catch(function(){});
+    });
+  });
+})();
+</script>
 </body>
 </html>
